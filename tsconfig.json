@@ -1,0 +1,13 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "lib": ["ES2019"],
+    "declaration": true,
+    "outDir": "dist",
+    "rootDir": "src",
+    "strict": true,
+    "types": ["node", "mocha"],
+    "esModuleInterop": true,
+    "resolveJsonModule": true
+  }
+}
