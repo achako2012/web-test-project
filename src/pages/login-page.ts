@@ -1,24 +1,38 @@
 import BasePage from "./base-page";
 import {page} from "../context";
+import {LogInData} from "../types";
+import logger from "../logger";
 
 class LoginPage extends BasePage {
 
-    private emailInput = '#email'
+    private userNameInput = '#userName'
 
-    private passwordInput = '#passwd'
+    private passwordInput = '#password'
 
-    private submitButton = '#SubmitLogin'
+    private loginButton = '#login'
 
-    async typeEmail(value:string):Promise<void>{
-        await page.type(this.emailInput, value)
+    async isDisplayed(): Promise<boolean> {
+        return await this.waitForElements([this.userNameInput, this.passwordInput])
     }
 
-    async typePassword(value:string):Promise<void>{
+    async typeUserName(value: string): Promise<void> {
+        await page.type(this.userNameInput, value)
+    }
+
+    async typePassword(value: string): Promise<void> {
         await page.type(this.passwordInput, value)
     }
 
-    async clickOnSubmit():Promise<void>{
-        await page.click(this.submitButton)
+    async clickOnLogin(): Promise<void> {
+        await page.click(this.loginButton)
+    }
+
+    async loginAs(loginData: LogInData): Promise<void> {
+        logger.info('Logging into the app');
+
+        await this.typeUserName(loginData.email);
+        await this.typePassword(loginData.password);
+        await this.clickOnLogin();
     }
 
 }

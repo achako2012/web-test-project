@@ -18,12 +18,19 @@ describe('Login test', function () {
     it('Login & Logout', async () => {
         await page.goto(BASE_URL)
 
-        await web.mainPage.clickOnLogin()
+        await web.navigationBar.clickOnBookStoreApplication()
+        await web.navigationBar.clickOnLogin()
 
-        await web.loginPage.typeEmail(customer.email)
+        await web.loginPage.typeUserName(customer.email)
         await web.loginPage.typePassword(customer.password)
-        await web.loginPage.clickOnSubmit()
+        await web.loginPage.clickOnLogin()
 
-        expect(await web.accountPage.isDisplayed(), 'Expected account page is displayed').to.be.true
+        const isProfilePageDisplayed = await web.profilePage.isDisplayed()
+        expect(isProfilePageDisplayed, 'User should see Profile page after logging in').to.be.true
+
+        await web.profilePage.clickOnLogout()
+
+        const isLoginPageDisplayed = await web.loginPage.isDisplayed()
+        expect(isLoginPageDisplayed, 'User should see Login page after logging out').to.be.true
     })
 })
