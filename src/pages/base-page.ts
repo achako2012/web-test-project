@@ -28,10 +28,5 @@ class BasePage{
         return true;
     }
 
-    protected async refresh(): Promise<void> {
-        await page.reload();
-        await page.waitForLoadState('networkidle');
-    }
-
 }
 export default BasePage

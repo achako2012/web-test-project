@@ -8,7 +8,6 @@ export const isBookAdded = async (api: ApiServices, data: { customer: Customer, 
     const {token, userId} = await api.authService.getToken(data.customer)
     const {books} = await api.userService.getUserData(token, userId)
 
-    console.log(books)
     const result = books.some((elem)=>elem.title === data.bookTitle)
 
     if (Array.isArray(books) && !books.length) {
