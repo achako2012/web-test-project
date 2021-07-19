@@ -7,11 +7,11 @@ describe('Login test', function () {
     const web = pageObjects()
     const customer = CUSTOMER
 
-    before('Open new page', async () => {
+    before('Open new page', async function () {
         await openPage();
     })
 
-    after('Close page', async () => {
+    after('Close page', async function () {
         await closePage()
     })
 

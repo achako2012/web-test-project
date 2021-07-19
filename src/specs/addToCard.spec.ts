@@ -9,15 +9,15 @@ describe('Buy book', function () {
     const web = pageObjects()
     const customer = CUSTOMER
 
+    before('Open new page', async function () {
+        await openPage();
+    })
+
     before('Check if a book is added. If yes - remove it before test', async () => {
         await hooks.deleteBooks(api, {customer});
     });
 
-    before('Open new page', async () => {
-        await openPage();
-    })
-
-    before('Log into the app', async () => {
+    before('Log into the app', async function () {
         await page.goto(BASE_URL);
         await web.navigationBar.clickOnBookStoreApplication()
         await web.navigationBar.clickOnLogin()
@@ -25,7 +25,7 @@ describe('Buy book', function () {
         await page.waitForTimeout(1000)
     });
 
-    after('Close page', async () => {
+    after('Close page', async function () {
         await closePage()
     })
 

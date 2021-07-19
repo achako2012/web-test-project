@@ -19,8 +19,8 @@ export const openPage = async () => {
 }
 
 export const closePage = async () => {
-    await browser.close()
-    await context.close()
+    await context.close();
+    await page.close();
 }
 
 export const initializeApi = async (): Promise<void> => {
